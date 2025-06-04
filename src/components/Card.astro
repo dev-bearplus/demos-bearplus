@@ -1,0 +1,421 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import icRocket from '../assets/icon-rocket.svg?raw';
+import icCode from '../assets/icon-code.svg?raw';
+import icDatabase from '../assets/icon-database.svg?raw';
+import icCopy from '../assets/icon-copy.svg?raw';
+interface Props {
+	srcImage: string;
+	linkLive: string;
+	linkStage:string;
+	title: string;
+	source: Array<string>;
+	cms: string;
+	hosting: Array<string>;
+	creative: string;
+	categorize: string;
+	publicity: string;
+	platform: string;
+}
+const { srcImage, linkLive='#', linkStage='#', title, source, cms, hosting, creative, categorize, publicity, platform } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/thumb/*.{jpeg,jpg,png,gif}');
+if (!images[srcImage]) throw new Error(`"${srcImage}" does not exist in glob: "src/assets/thumb/*.{jpeg,jpg,png,gif}"`);
+---
+<div class="card">
+	<div class="card-wrap">
+		<a href={linkStage ? linkStage : linkLive } target="_blank" class="card-img-wrap">
+			<!-- {srcVideo ? (
+				<video muted loop autoplay playsinline class="img-absolute">
+					<source src={srcVideo}
+						type="video/mp4"/>
+				</video>
+			) : (
+				<Image src={images[srcImage]()} alt={''} class="img-absolute" />)
+			} -->
+			<Image src={images[srcImage]()} alt={''} class="img-absolute" />
+			<div class="card-img-block"></div>
+		</a>
+		<div class="card-body">
+			<a href={linkStage ? linkStage : linkLive } target="_blank"><p class="card-body-title">{title}</p></a>
+			<div class="card-info-wrap">
+				{source.length != 0 && (
+					<div class="card-info-row hidden">
+						<div class="card-info-item">
+							<div class="card-info-ic">
+								<Fragment set:html={icCode} class="img-basic"/>
+							</div>
+							<div class="card-info-txt">{source.map((el: any, idx: number) => <span data-source={el.toLowerCase()}>{idx !== 0 ? ', ' : ''}{el}</span>)}</div>
+						</div>
+					</div>
+				)}
+				<div class="card-info-row">
+					<div class="card-info-item">
+						<div class="card-info-ic">
+							<Fragment set:html={icRocket} class="img-basic"/>
+						</div>
+						<div class="card-info-txt">{hosting.map((el: any, idx: number) => <span data-hosting={el.toLowerCase()}>{idx !== 0 ? ', ' : ''}{el}</span>)}</div>
+					</div>
+					{cms != "" && (
+						<div class="card-info-item">
+							<div class="card-info-ic">
+								<Fragment set:html={icDatabase} class="img-basic"/>
+							</div>
+							<div class="card-info-txt"><span data-cms={cms.toLowerCase()}>{cms}</span></div>
+						</div>
+					)}
+				</div>
+				{creative != '' && (
+					<div class="card-info-item hidden">
+						<div class="card-info-txt"><span data-creative={creative.toLowerCase()}>{creative}</span></div>
+					</div>
+				)}
+				{categorize != '' && (
+					<div class="card-info-item hidden">
+						<div class="card-info-txt"><span data-categorize={categorize.toLowerCase()}>{categorize}</span></div>
+					</div>
+				)}
+				{publicity != '' && (
+					<div class="card-info-item hidden">
+						<div class="card-info-txt"><span data-publicity={publicity.toLowerCase()}>{categorize}</span></div>
+					</div>
+				)}
+				{platform != '' && (
+					<div class="card-info-item hidden">
+						<div class="card-info-txt"><span data-platform={platform.toLowerCase()}>{categorize}</span></div>
+					</div>
+				)}
+			</div>
+		</div>
+	</div>
+	<div class="card-action">
+		{linkStage != "#" && (
+			<div class="card-action-inner">
+				<a href={linkStage} class="card-action-wrap" target="_blank">
+					<Fragment set:html={icCode} class="img-basic"/>
+					<p class="card-action-copy-alt">Staging</p>
+				</a>
+			</div>
+		)}
+		{linkLive != "#" && (
+			<div class="card-action-inner">
+				<a href={linkLive} class="card-action-wrap" target="_blank">
+					<Fragment set:html={icRocket} class="img-basic"/>
+					<p class="card-action-copy-alt">Live</p>
+				</a>
+			</div>
+		)}
+		{(linkStage != '#' || linkLive != '#') && (
+			<div class="card-action-inner">
+				<a href={linkStage ? linkStage : linkLive }  class="card-action-wrap copyLinkBtn" >
+					<Fragment set:html={icCopy} class="img-basic"/>
+					<p class="card-action-copy-alt">Copy link</p>
+				</a>
+			</div>
+		)}
+	</div>
+</div>
+<style lang="scss" is:global>
+	.card {
+		--color-theme: #000000;
+		position: relative;
+		overflow: hidden;
+		@media only screen and (max-width: 767px) {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+		&:hover &-action {
+			pointer-events: auto;
+			opacity: 1;
+		}
+		&:hover {
+			&:before {
+				background-color: rgba(79, 69, 87, 0.42);
+			}
+			.card-img-wrap {
+				// filter: brightness(1) grayscale(0);
+			}
+			@media only screen and (max-width: 767px) {
+				filter: unset;
+			}
+		}
+		&:before {
+			content: '';
+			position: absolute;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 2rem;
+			border: 1px solid #393646;
+			background-color: rgba(79, 69, 87, 0.24);
+			transition: background-color .4s ease-in-out;
+			backdrop-filter: blur(1rem);
+			@media only screen and (max-width: 767px) {
+				border-radius: .8rem;
+			}
+		}
+		&-wrap {
+			position: relative;
+			z-index: 2;
+			padding: 1.8rem;
+			overflow: hidden;
+			border-radius: 2rem;
+			@media only screen and (max-width: 991px) {
+				padding: 1rem;
+				border-radius: 0;
+				overflow: visible;
+			}
+			@media only screen and (max-width: 767px) {
+				padding: .8rem;
+			}
+		}
+		&-action {
+			pointer-events: none;
+			position: absolute;
+			inset: 2.5rem 2.5rem auto auto;
+			display: flex;
+			column-gap: 1.2rem;
+			z-index: 3;
+			opacity: 0;
+			transition: .6s ease all;
+			@media only screen and (max-width: 991px) {
+				position: relative;
+				opacity: 1;
+				left: auto;
+				right: auto;
+				bottom: 0;
+				top: 0;
+				margin-bottom: .8rem;
+				padding-inline: 1rem;
+				margin-top: auto;
+				justify-content: end;
+			}
+			@media only screen and (max-width: 767px) {
+				justify-content: start;
+			}
+
+			&-inner {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: #181521;
+				box-shadow: 0 0 .8rem #0000001f;
+				border-radius: 1rem;
+				height: max-content;
+				color: #f4f4f4;
+				transition: .5s ease all;
+				&:hover {
+					color: #f4f4f4b2;
+				}
+				@media only screen and (max-width: 767px) {
+					border-radius: .4rem;
+				}
+			}
+			&-wrap{
+				width: 4rem;
+				height: 4rem;
+				display: flex;
+				padding: 1.1rem 1.2rem 1.2rem;
+				box-sizing: border-box;
+				color: currentColor;
+				position: relative;
+				&:hover .card-action-copy-alt {
+					opacity: 1;
+				}
+			}
+			&-copy-alt{
+				position: absolute;
+				top: 110%;
+				left: 50%;
+				color: white;
+				font-size: 1.2rem;
+				padding: .4rem .8rem;
+				border-radius: .5rem;
+				background-color: #000;
+				transform: translateX(-50%);
+				white-space: nowrap;
+				transition: .4s ease all;
+				opacity: 0;
+				z-index: 10;
+				font-family: 'GT-America';
+				letter-spacing: -.05em;
+				@media only screen and (max-width: 767px) {
+					display: none;
+				}
+			}
+		}
+
+		&-img {
+			&-block{
+				/* padding-top: 128%; */
+				padding-top: 75%;
+			}
+			&-wrap{
+				position: relative;
+				border-radius: 1.1rem;
+				overflow: hidden;
+				display: block;
+				box-shadow: 0 0 .3rem #0000002b;
+				filter: brightness(.9) grayscale(.1);
+				transition: .4s ease-out all;
+				@media screen and (max-width: 991px) {
+					border-radius: 1rem;
+				}
+				@media only screen and (max-width: 767px) {
+					border-radius: .4rem;
+					margin-bottom: 1.2rem;
+				}
+			}
+		}
+		&-body {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			align-items: start;
+			position: absolute;
+			bottom: -1rem;
+			left: 0;
+			padding: 0 2.4rem 2rem;
+			width: 100%;
+			@media only screen and (max-width: 991px) {
+				gap: .5rem;
+			}
+			@media only screen and (max-width: 767px) {
+				position: relative;
+				padding: 0 .5rem .5rem;
+				bottom: 0;
+			}
+			&:before {
+				content: '';
+				position: absolute;
+				z-index: 2;
+				width: 100%;
+				height: 25rem;
+				bottom: 0;
+				left: 0;
+				pointer-events: none;
+				border-bottom-left-radius: 1.9rem;
+				border-bottom-right-radius: 1.9rem;
+				background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 80%);
+				@media only screen and (max-width: 991px) {
+					border-bottom-left-radius: 0;
+					border-bottom-right-radius: 0;
+					// left: .1rem;
+					// width: calc(100% - .2rem);
+					height: 35rem;
+					bottom: -5rem;
+				}
+				@media only screen and (max-width: 767px) {
+					display: none;
+				}
+			}
+			a {
+				position: relative;
+				z-index: 3;
+			}
+			&-title {
+				font-size: 2.8rem;
+				color: #f4f4f4;
+				font-weight: 500;
+				line-height: 1.4em;
+				position: relative;
+				@media only screen and (max-width: 991px) {
+					font-size: 2.4rem;
+				}
+				@media only screen and (max-width: 767px) {
+					font-size: 1.4rem;
+					margin-bottom: .5rem;
+				}
+				&:after {
+					content:'';
+					position: absolute;
+					width: 100%;
+					height: 1px;
+					transform: scaleX(0);
+					transform-origin: right;
+					transition: .5s ease transform;
+					bottom: .1em;
+					left: 0;
+					background-color: #f4f4f4;
+				}
+				&:hover:after {
+					transform: scaleX(1);
+					transform-origin: left;
+				}
+			}
+		}
+		&-info {
+			&-wrap {
+				display: flex;
+				flex-direction: column;
+				gap: .4rem;
+				position: relative;
+				z-index: 3;
+			}
+			&-row {
+				display: flex;
+				gap: 1.6rem;
+				@media only screen and (max-width: 767px) {
+					flex-direction: column;
+					gap: .4rem;
+				}
+			}
+			&-item {
+				display: flex;
+				column-gap: 1rem;
+				align-items: center;
+				@media only screen and (max-width: 767px) {
+					column-gap: .6rem;
+				}
+			}
+			&-txt {
+				font-size: 1.6rem;
+				line-height: 1.4em;
+				color: #f4eee0c8;
+				font-family: 'GT-America';
+				letter-spacing: -.05em;
+				@media only screen and (max-width: 991px) {
+					font-size: 1.4rem;
+				}
+				@media only screen and (max-width: 767px) {
+					font-size: 1.2rem;
+				}
+			}
+			&-ic {
+				width: 1.4rem;
+				height: 1.4rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #A6A6A6;
+				@media only screen and (max-width: 767px)  {
+					width: 1rem;
+					height: 1rem;
+				}
+			}
+		}
+	}
+</style>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+	  const copyLinkBtn = document.querySelectorAll('.copyLinkBtn');
+
+	  if (copyLinkBtn) {
+		copyLinkBtn.forEach((item)=>{
+			item.addEventListener('click', (event) => {
+			event.preventDefault();
+			const link = (event.currentTarget as HTMLAnchorElement).href;
+			navigator.clipboard.writeText(link)
+				.then(() => {
+				})
+				.catch(() => {
+				});
+			});
+		})
+
+	  }
+	});
+  </script>

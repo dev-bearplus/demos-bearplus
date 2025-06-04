@@ -1,0 +1,172 @@
+---
+const { title, list } = Astro.props;
+---
+<div class="select" data-name={title.toLowerCase()}>
+    <div class="select-inner">
+        <div class="select-toggle">
+            <div class="select-toggle-txt">
+                <div class="select-label">{title}:</div>
+                <input class="select-value" type="text" autocomplete="off" value="All" readonly/>
+            </div>
+            <div class="select-toggle-ic">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-4 w-4 opacity-50" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+            </div>
+        </div>
+        <div class="select-option">
+            <div class="select-option-inner">
+                <div class="select-listing" data-lenis-prevent>
+                    {[{ value: 'all', name: 'All' }, ...list].map((el: { value: string, name: string }, idx) => <div class:list={[ 'select-item', { active: idx === 0 }]} data-value={el.value}>{el.name}</div>)}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style lang="scss">
+    .select {
+        color: #f4f4f4;
+        max-width: 20rem;
+        width: max-content;
+        position: relative;
+        z-index: 3;
+        transition: z-index .6s;
+
+        @media only screen and (max-width: 991px) {
+
+        }
+        &.active {
+            z-index: 4;
+        }
+        &.active  & {
+            &-option {
+                grid-template-rows: 1fr;
+                opacity: 1;
+                transition: grid-template-rows .6s, top .6s, opacity .5s ease-in-out 0s;
+                top: calc(100% + .3rem);
+            }
+            &-toggle {
+                border: 1px solid #7164ad;
+                &-ic {
+                    transform: rotate(-180deg);
+                }
+            }
+        }
+        &-inner {
+            position: relative;
+        }
+        &-label {
+            color: #f4f4f49f;
+            font-size: 1.4rem;
+        }
+        &-toggle {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            padding: 1.3rem 1rem 1.35rem;
+            width: 100%;
+            border: 1px solid #5d5777;
+            background-color: rgba(0, 0, 0, 0.255);
+            backdrop-filter: blur(.1rem);
+            border-radius: .5rem;
+            transition: border .4s ease-in-out;
+            cursor: pointer;
+            @media only screen and (max-width: 991px) {
+                border: 1px solid #7164ad;
+            }
+            &-txt {
+                display: flex;
+                align-items: baseline;
+                gap: .5rem;
+                pointer-events: none;
+                width: 100%;
+            }
+            &-ic {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 1.4rem;
+                color: #f4f4f49f;
+                transition: transform .5s ease-in-out;
+            }
+        }
+        &-value {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            font-size: 1.4rem;
+            padding: 0;
+            width: inherit;
+            color: #f4f4f4;
+        }
+        &-option {
+            display: grid;
+            grid-template-rows: 0fr;
+            width: 100%;
+            position: absolute;
+            z-index: 2;
+            top: 100%;
+            transition: grid-template-rows .6s, top .6s, opacity .45s ease-in-out;
+            &-inner {
+                overflow: hidden;
+            }
+        }
+        &-listing {
+            display: flex;
+            flex-direction: column;
+            text-align: start;
+            max-height: 12rem;
+            padding: .5rem .3rem;
+            overflow-y: auto;
+            overflow-x: clip;
+            border-radius: .5rem;
+            border: 1px solid #5d5777;
+            background-color: rgba(0, 0, 0, 0.255);
+            backdrop-filter: blur(.1rem);
+            transition: border .4s ease-in-out;
+            @media only screen and (max-width: 991px) {
+                background-color: rgba(0, 0, 0, 0.8);
+                border: 1px solid #7164ad;
+            }
+
+            &::-webkit-scrollbar {
+                width: 0.3rem;
+            }
+            &::-webkit-scrollbar-track {
+                background-color: rgba(0,0,0,.1);
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: #5d5777;
+                transition: background-color .4s ease-in-out;
+            }
+            @media only screen and (max-width: 991px){
+                &::-webkit-scrollbar-thumb {
+                    background-color: #7164ad;
+                }
+            }
+            @media (hover:hover) {
+                &:hover {
+                    border: 1px solid #7164ad;
+                    &::-webkit-scrollbar-thumb {
+                        background-color: #7164ad;
+                    }
+                }
+            }
+        }
+        &-item {
+            cursor: pointer;
+            padding: .7rem;
+            font-size: 1.4rem;
+            border-radius: .2rem;
+            @media (hover: hover) {
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.255);
+                }
+            }
+            &.active {
+                pointer-events: none;
+                background-color: rgba(0, 0, 0, 0.255);
+                display: none;
+            }
+        }
+    }
+</style>

@@ -1,0 +1,32 @@
+---
+interface Props {
+	title: string;
+}
+import '../styles/global.scss'
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="robots" content="noindex" />
+		<link rel="preload" href="/fonts/GT-America-Mono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/GT-America-Mono-Regular.woff" as="font" type="font/woff" crossorigin />
+		<link rel="preload" href="/fonts/TWKEverett-Black.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/TWKEverett-Black.woff" as="font" type="font/woff" crossorigin />
+		<link rel="preload" href="/fonts/TWKEverett-Regular.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/TWKEverett-Regular.woff" as="font" type="font/woff" crossorigin />
+	</head>
+	</head>
+	<body>
+		<slot />
+	</body>
+	<script src="../js/main.js"></script>
+</html>
+

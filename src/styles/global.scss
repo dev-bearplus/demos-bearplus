@@ -1,0 +1,105 @@
+@font-face {
+  font-family: 'GT-America';
+  src: url('/fonts/GT-America-Mono-Regular.woff2') format('woff2'),
+  url('/fonts/GT-America-Mono-Regular.woff') format('woff');;
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'TWK Everett';
+  src: url('/fonts/TWKEverett-Regular.woff2') format('woff2'),
+      url('/fonts/TWKEverett-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'TWK Everett';
+  src: url('/fonts/TWKEverett-Black.woff2') format('woff2'),
+      url('/fonts/TWKEverett-Black.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: fallback;
+}
+
+*, *:before, *:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+    font-size: 0.5787037037vw;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'TWK Everett';
+    background-color: #585561;
+
+    @media only screen and (max-width: 1729px) and (min-width: 991px) {
+        @media screen and (min-aspect-ratio: 1600 / 800) {
+            font-size: 0.9259259259vh;
+        }
+    }
+    @media only screen and (min-width: 1728px) {
+      font-size: 10px;
+    }
+    @media only screen and (max-width: 991px) {
+      font-size: 1.1990407674vw;
+    }
+    @media only screen and (max-width: 767px) {
+        font-size: 1.8vw;
+    }
+    @media only screen and (max-width: 476px) {
+        font-size: 2.667vw;
+    }
+  }
+
+  body {
+    font-size: 1.6rem;
+  }
+  .container{
+    max-width: 100%;
+    padding: 0 8rem;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+    @media (min-width: 68.75em) {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+    @media only screen and (max-width: 991px){
+      padding: 0 4rem;
+    }
+    @media only screen and (max-width: 767px){
+      padding: 0 1.6rem;
+    }
+  }
+  .grid-5{
+    display: grid;
+    gap: 4rem 3rem;
+    grid-template-columns: repeat(4, minmax(1px, 1fr));
+  }
+  .img-basic{
+    width: 100%;
+    object-fit: fill;
+  }
+  .img-basic.img-fill{
+    height: 100%;
+    object-fit: cover;
+  }
+  .img-absolute{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  a{
+    color: inherit;
+    text-decoration: none;
+  }
+  .hidden {
+    display: none !important;
+  }

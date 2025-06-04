@@ -1,0 +1,500 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import BG from '../assets/bg.svg';
+import logo from '../assets/bearplus.png';
+// import snowOnLogo from '../assets/snow-on-logo.svg';
+
+import project from '../data/projects.json';
+import { Image } from "astro:assets";
+import SearchBar from '../components/SearchBar.astro';
+import Select from '../components/Select.astro';
+---
+<Layout title="Bearplus Demo">
+	<main>
+		<section class="project">
+			<div class="project-bg">
+				<Image src={BG} alt="bg" width={3840} height={2160}/>
+			</div>
+			<div class="container">
+				<div class='project-head'>
+					<div class="project-logo">
+						<!-- <div class="project-logo-snow">
+							<Image src={snowOnLogo} alt="snow on logo" width={246} height={29}/>
+						</div> -->
+						<div class="project-logo-inner">
+							<div class="real">
+								<Image src={logo} alt="logo" width={570} height={460}/>
+							</div>
+							<div class="cloner">
+								<Image src={logo} alt="logo" width={570} height={460}/>
+							</div>
+							<div class="cloner">
+								<Image src={logo} alt="logo" width={570} height={460}/>
+							</div>
+							<div class="cloner">
+								<Image src={logo} alt="logo" width={570} height={460}/>
+							</div>
+							<div class="cloner">
+								<Image src={logo} alt="logo" width={570} height={460}/>
+							</div>
+							<div class="cloner">
+								<Image src={logo} alt="logo" width={570} height={460}/>
+							</div>
+						</div>
+					</div>
+					<div class="project-head-text">
+						<div class="project-title cursor-square">BearPlus</div>
+						<div class="project-sub cursor-square">A TEAM OF PROBLEM-SOLVERS AND CREATIVE DIGITAL CRAFTSMEN <br/> WHO WORK TO MAKE A DIFFERENCE <br/> IN THE DIGITAL WORLD</div>
+					</div>
+					<SearchBar />
+				</div>
+			</div>
+			<div class="project-filter">
+				<div class="container">
+					<div class="project-filter-inner">
+						<Select title="Hosting" list={[
+							{ value: "webflow", name: "Webflow" },
+							{ value: "wordpress", name: "Wordpress" },
+							{ value: "shopify", name: "Shopify" },
+							{ value: "netlify", name: "Netlify" },
+							{ value: "hubspot", name: "Hubspot" },
+							{ value: "vercel", name: "Vercel" },
+							{ value: "codesphere", name: "Codesphere" },
+						]}/>
+						<Select title="CMS" list={[
+							{ value: "webflow", name: "Webflow" },
+							{ value: "wordpress", name: "Wordpress" },
+							{ value: "shopify", name: "Shopify" },
+							{ value: "decap", name: "Decap" },
+							{ value: "prismic", name: "Prismic" },
+							{ value: "hubspot", name: "Hubspot" },
+						]}/>
+						<Select title="Creative" list={[
+							{ value: "low", name: "Low" },
+							{ value: "medium", name: "Medium" },
+							{ value: "high", name: "High" }
+						]}/>
+						<Select title="Categorize" list={[
+							{ value: "saas", name: "SaaS" },
+							{ value: "industry", name: "Industry" },
+							{ value: "ecommerce", name: "eCommerce" },
+							{ value: "personal", name: "Personal" },
+							{ value: "landing", name: "Landing" },
+							{ value: "fintech", name: "FinTech" },
+							{ value: "agency", name: "Agency" },
+							{ value: 'edutech', name: "EduTech" },
+							{ value: "real estate", name: "Real Estate" }
+						]}/>
+						<Select title="Publicity" list={[
+							{ value: "public", name: "Public" },
+							{ value: "white-label", name: "White-label" },
+						]}/>
+						<Select title="Platform" list={[
+							{ value: "website", name: "Website" },
+							{ value: "web app", name: "Web App" },
+							{ value: "mobile app", name: "Mobile App" },
+						]}/>
+						<div class="project-filter-reset">Reset</div>
+					</div>
+				</div>
+			</div>
+			<div class="project-listing">
+				<div class="container">
+					<div class="project-listing-inner">
+						{project.map(proj => (
+							<div class="project-item">
+								<Card
+									srcImage={proj.img || '/src/assets/thumb/img-card.jpeg'}
+									linkStage={proj.link_stage || '#'}
+									linkLive={proj.link_live || '#'}
+									title={proj.title}
+									source={proj.source || [""]}
+									cms={proj.cms || ''}
+									hosting={proj.hosting || [""]}
+									creative={proj.creative || ''}
+									categorize={proj.categorize || ''}
+									publicity={proj.publicity || ''}
+									platform={proj.platform || ''}
+								/>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+			<!-- <div class="snow-wrap">
+				{[...Array(199)].map(() => (
+					<div class="snow"></div>
+				))}
+			</div> -->
+		</section>
+	</main>
+</Layout>
+
+<style lang="scss" is:global>
+	@use '../styles/keyframes.scss' as *;
+	@use 'sass:math';
+	.project {
+		contain: paint;
+		background: radial-gradient(ellipse at top, #090a0f 0%, #585561 50%);
+		min-height: 100vh;
+		padding-bottom: 10rem;
+		@media only screen and (max-width: 991px) {
+			background: radial-gradient(ellipse at bottom, #090a0f 0%, #585561 50%);
+		}
+		@media only screen and (max-width: 767px) {
+			background: radial-gradient(ellipse at top, #090a0f 0%, #585561 0%);
+		}
+		> .container {
+			z-index: 4;
+		}
+		&-head {
+			margin-top: 15rem;
+			display: flex;
+			gap: 0 3rem;
+			align-items: baseline;
+			position: relative;
+			z-index: 2;
+			color: #f4f4f4;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			opacity: 0;
+			margin-bottom: 3.2rem;
+			@media only screen and (max-width: 991px) {
+				margin-top: 10rem;
+			}
+			@media only screen and (max-width: 767px) {
+				margin-top: 8rem;
+			}
+			&-text {
+				position: relative;
+				z-index: 2;
+				margin-bottom: 3.2rem;
+			}
+		}
+		&-logo {
+			position: relative;
+			z-index: 1;
+			display: flex;
+			justify-content: center;
+			&-inner {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 10rem;
+				filter: saturate(0.1) drop-shadow(.2rem .4rem 1rem #181521) brightness(2);
+				margin-bottom: 2rem;
+				@media only screen and (max-width: 991px) {
+					height: 8rem;
+					margin-bottom: 1rem;
+				}
+				@media only screen and (max-width: 767px) {
+					height: 6rem;
+				}
+			}
+			&-snow {
+				position: absolute;
+				top: -.3rem;
+				width: 8rem;
+				z-index: 2;
+				@media only screen and (max-width: 767px) {
+					width: 5rem;
+					top: -.8rem;
+				}
+				img {
+					width: 100%;
+					height: auto;
+				}
+			}
+			&-inner {
+				img {
+					height: 100%;
+					width: auto;
+				}
+			}
+			.real, .cloner {
+				height: 100%;
+			}
+			.cloner {
+				--gap-horizontal: 20px;
+				--gap-vertical: 2px;
+				--time-anim: 2.25s;
+				--blend-mode-1: none;
+				--blend-mode-2: none;
+				--blend-mode-3: none;
+				--blend-mode-4: none;
+				--blend-mode-5: none;
+				--blend-color-1: transparent;
+				--blend-color-2: transparent;
+				--blend-color-3: transparent;
+				--blend-color-4: transparent;
+				--blend-color-5: transparent;
+
+				position: absolute;
+				top: 0;
+				left: 0;
+
+				animation: glitch-anim-1 var(--time-anim) infinite linear alternate;
+				position: absolute;
+				transform-origin: center;
+
+				&:nth-child(2) {
+					animation-name: glitch-anim-1;
+					animation-delay: calc(var(--time-anim) + 4s);
+					animation-duration: calc(var(--time-anim) + 5s);
+				}
+
+				&:nth-child(3) {
+					animation-name: glitch-anim-2;
+					animation-delay: calc(var(--time-anim));
+				}
+				&:nth-child(4) {
+					animation-name: glitch-anim-3;
+					animation-duration: calc(var(--time-anim) + 2s);
+					animation-delay: calc(var(--time-anim) + 5s);
+				}
+				&:nth-child(5) {
+					animation-delay: calc(var(--time-anim) + 1s);
+					animation-name: glitch-anim-flash;
+				}
+			}
+		}
+		&-title {
+			font-weight: 800;
+			text-transform: uppercase;
+			letter-spacing: -.03em;
+			font-size: 10rem;
+			margin-left: -.05em;
+			white-space: nowrap;
+			margin-bottom: 2rem;
+			@media only screen and (max-width: 991px) {
+				font-size: 10rem;
+				margin-bottom: 1rem;
+			}
+			@media only screen and (max-width: 767px) {
+				font-size: 5rem;
+			}
+		}
+		&-sub {
+			font-family: GT-America;
+			max-width: 70rem;
+			letter-spacing: .08em;
+			margin: 0 auto;
+			line-height: 1.4;
+			@media only screen and (max-width: 991px) {
+				font-size: 1.2rem;
+			}
+		}
+		.cursor-square {
+			--opa: 0;
+			.char {
+				position: relative;
+			}
+			.char::after {
+				content: '';
+				width: 1ch;
+				top: 0;
+				left: 0;
+				position: absolute;
+				opacity: var(--opa);
+				background: currentColor;
+				height: 100%;
+				visibility: visible;
+			}
+		}
+		&-bg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: auto;
+			z-index: 2;
+			mix-blend-mode: luminosity;
+			img {
+				width: 100%;
+				height: auto;
+				min-width: 100%;
+				min-height: 100%;
+			}
+			@media only screen and (max-width: 767px) {
+				left: -50%;
+				width: auto;
+				right: -50%;
+			}
+		}
+		&-filter {
+			position: relative;
+			z-index: 4;
+			opacity: 0;
+			.container {
+				width: 100%;
+				position: relative;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				@media only screen and (max-width: 991px) {
+					flex-direction: column;
+					gap: 1rem;
+				}
+			}
+			&-inner {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: .5rem;
+				width: max-content;
+				margin: 0 auto 2rem;
+				position: relative;
+				@media only screen and (max-width: 991px) {
+					gap: 1rem;
+					width: 80%;
+					flex-wrap: wrap;
+					justify-content: center;
+				}
+				@media only screen and (max-width: 767px) {
+					display: none;
+				}
+			}
+			&-reset {
+				position: absolute;
+				color: #f4f4f49f;
+				font-size: 1.4rem;
+				cursor: pointer;
+				right: -2rem;
+				opacity: 0;
+				pointer-events: none;
+				transition: color .4s ease-in-out, opacity .4s ease-in-out;
+				transform: translateX(100%);
+				@media only screen and (max-width: 991px) {
+					height: 120%;
+					top: 15rem;
+				}
+				&.active {
+					opacity: 1;
+					pointer-events: auto;
+				}
+				@media (hover:hover) {
+					&:hover {
+						color: #f4f4f4;
+					}
+				}
+			}
+		}
+		&-listing {
+			position: relative;
+			z-index: 3;
+			padding-top: 6rem;
+			opacity: 0;
+			min-height: 30vh;
+			@media only screen and (max-width: 991px) {
+				padding-top: 8rem;
+			}
+			&:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				height: 30rem;
+				width: 100%;
+				z-index: 1;
+				background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
+				@media only screen and (max-width: 991px) {
+					top: -15rem;
+				}
+				@media only screen and (max-width: 767px) {
+					top: -13rem;
+					height: 15rem;
+				}
+			}
+			&:after {
+				content: '';
+				position: absolute;
+				top: 30rem;
+				height: 102%;
+				width: 100%;
+				background-color: black;
+				z-index: 0;
+				@media only screen and (
+				max-width: 991px) {
+					top: 15rem;
+				}
+				@media only screen and (max-width: 767px) {
+					top: 2rem;
+				}
+			}
+			&-inner {
+				margin-top: 8rem;
+				display: grid;
+				gap: 5rem 3rem;
+				grid-template-columns: repeat(4, minmax(1px, 1fr));
+				@media only screen and (max-width: 991px){
+					grid-template-columns: repeat(2, minmax(1px, 1fr));
+				}
+				@media only screen and (max-width: 767px){
+					margin-top: 0rem;
+					grid-template-columns: repeat(2, minmax(1px, 1fr));
+					gap: 2.4rem 1.6rem;
+				}
+			}
+
+		}
+	}
+	@function random_range($min, $max) {
+		$rand: math.random();
+		$random_range: $min + math.floor($rand * (($max - $min) + 1));
+		@return $random_range;
+	}
+	.snow-wrap {
+		width: 100%;
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		left: 0;
+		height: 200vh;
+		overflow: hidden;
+		pointer-events: none;
+	}
+	.snow {
+		$total: 200;
+		position: absolute;
+		width: 10px;
+		top: 0;
+		height: 10px;
+		background: white;
+		border-radius: 50%;
+		@media only screen and (max-width: 767px) {
+			&:nth-child(n + 50) {
+				display: none;
+			}
+		}
+		@for $i from 1 through $total {
+			$random-x: math.random(1000000) * 0.0001vw;
+			$random-offset: random_range(-100000, 100000) * 0.0001vw;
+			$random-x-end: $random-x + $random-offset;
+			$random-x-end-yo-yo: $random-x + math.div($random-offset, 2);
+			$random-yo-yo-time: math.div(random_range(30000, 80000), 100000);
+			$random-yo-yo-y: $random-yo-yo-time * 100vh;
+			$random-scale: math.random(10000) * 0.0001;
+			$fall-duration: random_range(10, 30) * 1s;
+			$fall-delay: math.random(30) * -1s;
+			$blur : random_range(1px, 2px);
+
+			&:nth-child(#{$i}) {
+				opacity: math.random(10000) * 0.0001;
+				transform: translate($random-x, -10px) scale($random-scale);
+				animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
+				filter: blur($blur);
+			}
+
+			@keyframes fall-#{$i} {
+				#{math.percentage($random-yo-yo-time)} {
+					transform: translate($random-x-end, $random-yo-yo-y) scale($random-scale);
+				}
+				to {
+					transform: translate($random-x-end-yo-yo, 100vh) scale($random-scale);
+				}
+				}
+			}
+		}
+</style>
