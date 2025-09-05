@@ -506,7 +506,7 @@
   {
     "title": "Bearpop",
     "link_stage": "https://bearpop.webflow.io/",
-    "link_live": "",
+    "link_live": "http://bearpop.online/",
     "hosting": ["Webflow"],
     "script_host": "Netlify",
     "source": ["Bitbucket"],
