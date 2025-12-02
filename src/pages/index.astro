@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import BG from '../assets/bg.svg';
 import logo from '../assets/bearplus.png';
-// import snowOnLogo from '../assets/snow-on-logo.svg';
+import snowOnLogo from '../assets/snow-on-logo.svg';
 
 import project from '../data/projects.json';
 import { Image } from "astro:assets";
@@ -19,9 +19,9 @@ import Select from '../components/Select.astro';
 			<div class="container">
 				<div class='project-head'>
 					<div class="project-logo">
-						<!-- <div class="project-logo-snow">
+						<div class="project-logo-snow">
 							<Image src={snowOnLogo} alt="snow on logo" width={246} height={29}/>
-						</div> -->
+						</div>
 						<div class="project-logo-inner">
 							<div class="real">
 								<Image src={logo} alt="logo" width={570} height={460}/>
@@ -122,11 +122,11 @@ import Select from '../components/Select.astro';
 					</div>
 				</div>
 			</div>
-			<!-- <div class="snow-wrap">
+			<div class="snow-wrap">
 				{[...Array(199)].map(() => (
 					<div class="snow"></div>
 				))}
-			</div> -->
+			</div>
 		</section>
 	</main>
 </Layout>
