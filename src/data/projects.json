@@ -128,6 +128,7 @@
   {
     "title": "Compsych",
     "link_stage": "https://compsych.webflow.io/",
+    "link_live": "https://compsych.konpo.co/",
     "hosting": ["Webflow"],
     "script_host": "",
     "source": ["Bitbucket"],
