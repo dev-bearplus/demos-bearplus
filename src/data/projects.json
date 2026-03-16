@@ -459,7 +459,7 @@
   {
     "title": "DashHQ",
     "link_stage": "https://subscription-teal.vercel.app/",
-    "link_live": "https://dashhq.com/",
+    "link_live": "https://flinkcreative.com/",
     "hosting": ["Netlify"],
     "script_host": "",
     "source": ["Bitbucket", "Github"],
