@@ -1,20 +1,5 @@
 [
   {
-    "title": "Black Forest",
-    "link_stage": "https://bfv-bp.webflow.io/",
-    "hosting": ["Webflow"],
-    "script_host": "",
-    "source": ["Github"],
-    "PIC": "Ray, Kelvin",
-    "form_submit": "Webflow",
-    "img": "/src/assets/thumb/bfv.jpg",
-    "cms": "Webflow",
-    "creative": "Low",
-    "categorize": "Industry",
-    "publicity": "Public",
-    "platform": "Website"
-  },
-  {
     "title": "SCS",
     "link_stage": "https://scs-bp.webflow.io/",
     "hosting": ["Webflow"],
