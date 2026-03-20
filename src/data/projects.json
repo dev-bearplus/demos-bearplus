@@ -31,7 +31,7 @@
   },
   {
     "title": "Binder Consulting",
-    "link_stage": "https://binder-consulting-bp.webflow.io/",
+    "link_stage": "https://binderconsulting-bp.webflow.io/",
     "hosting": ["Webflow"],
     "script_host": "",
     "source": ["Github"],
