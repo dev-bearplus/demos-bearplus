@@ -1,5 +1,37 @@
 [
   {
+    "title": "United Carriers",
+    "link_stage": "https://united-carriers-bp.webflow.io/",
+    "link_live": "https://unitedcarriers.com/",
+    "hosting": ["Webflow"],
+    "script_host": "",
+    "source": ["Github"],
+    "PIC": "Noah, Ray, Kelvin",
+    "form_submit": "",
+    "img": "/src/assets/thumb/united-carriers.jpg",
+    "cms": "Webflow",
+    "creative": "High",
+    "categorize": "Industry",
+    "publicity": "Public",
+    "platform": "Website"
+  },
+  {
+    "title": "Linearity",
+    "link_stage": "https://main--linearity.netlify.app/",
+    "link_live": "https://www.linearity.io/",
+    "hosting": ["Netlify"],
+    "script_host": "",
+    "source": ["Github"],
+    "PIC": "Liam, Kelvin",
+    "form_submit": "",
+    "img": "/src/assets/thumb/linearity.jpg",
+    "cms": "Webflow",
+    "creative": "High",
+    "categorize": "SaaS",
+    "publicity": "Public",
+    "platform": "Landing"
+  },
+  {
     "title": "Black Forest",
     "link_stage": "https://bfv-bp.webflow.io/",
     "hosting": ["Webflow"],
