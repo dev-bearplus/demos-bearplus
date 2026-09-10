@@ -359,7 +359,7 @@
   },
   {
     "title": "Pakway",
-    "link_stage": "https://pakway.webflow.io/",
+    "link_stage": "https://pakway-bp.webflow.io/",
     "link_live": "https://www.pakway.net/",
     "hosting": ["Webflow"],
     "script_host": "",
