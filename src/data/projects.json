@@ -1,5 +1,21 @@
 [
   {
+    "title": "HeronAI",
+    "link_stage": "https://heronai.webflow.io/",
+    "link_live": "https://www.heronaiapp.com/",
+    "hosting": ["Webflow"],
+    "script_host": "",
+    "source": ["Github"],
+    "PIC": "Kelvin, Noah, Ray",
+    "form_submit": "Webflow",
+    "img": "/src/assets/thumb/heronai.jpg",
+    "cms": "Webflow",
+    "creative": "High",
+    "categorize": "Product",
+    "publicity": "Public",
+    "platform": "Website"
+  },
+  {
     "title": "United Carriers",
     "link_stage": "https://united-carriers-bp.webflow.io/",
     "link_live": "https://unitedcarriers.com/",
@@ -98,7 +114,7 @@
     "hosting": ["Webflow"],
     "script_host": "",
     "source": ["Github"],
-    "PIC": "Kelvin",
+    "PIC": "Kelvin, Noah",
     "form_submit": "Webflow",
     "img": "/src/assets/thumb/kestrel-labs.jpg",
     "cms": "Webflow",
@@ -407,8 +423,7 @@
   },
   {
     "title": "SurgeHQ",
-    "link_stage": "https://surgeai.webflow.io/",
-    "link_live": "https://www.surgehq.ai/",
+    "link_stage": "https://surgehq.webflow.io/",
     "hosting": ["Webflow"],
     "script_host": "Netlify",
     "source": ["Bitbucket"],
