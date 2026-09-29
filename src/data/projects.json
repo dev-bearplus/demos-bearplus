@@ -631,7 +631,7 @@
   {
     "title": "Getleadway",
     "link_stage": "https://bp-getleadway.webflow.io/",
-    "link_live": "",
+    "link_live": "https://leadway.ai/",
     "hosting": ["Webflow"],
     "script_host": "Netlify",
     "source": ["Bitbucket"],
